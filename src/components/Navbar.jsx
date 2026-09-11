@@ -1,31 +1,66 @@
-import React from 'react';
-import logoText from '../assets/logo-text.png';
+import { useState } from 'react';
+import hamburgerIcon from '../assets/hamburger.png';
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-3">
-            <img src={logoText} alt="DevStack Logo" className="h-8 object-contain" />
-          </div>
+    <nav className="bg-slate-900 text-white px-6 py-4 sticky top-0 z-50 shadow-md">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        
+        {/* Logo */}
+        <div className="text-2xl font-bold tracking-wide">
+          Dev<span className="text-blue-500">Stack</span>
+        </div>
 
-          <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
-            <a href="#home" className="hover:text-pink-600 transition-colors">Home</a>
-            <a href="#technologies" className="hover:text-pink-600 transition-colors">Technologies</a>
-            <a href="#projects" className="hover:text-pink-600 transition-colors">Projects</a>
-            <a href="#about" className="hover:text-pink-600 transition-colors">About</a>
-            <a href="#contact" className="hover:text-pink-600 transition-colors">Contact</a>
-          </div>
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex space-x-8 items-center font-medium">
+          <li className="hover:text-blue-400 cursor-pointer transition-colors">Home</li>
+          <li className="hover:text-blue-400 cursor-pointer transition-colors">Technologies</li>
+          <li className="hover:text-blue-400 cursor-pointer transition-colors">Projects</li>
+          <li className="hover:text-blue-400 cursor-pointer transition-colors">About Us</li>
+        </ul>
 
-          <div className="flex items-center gap-3">
-            <button className="text-sm font-semibold text-gray-700 px-3 py-1.5 hover:text-black">Sign In</button>
-            <button className="text-sm font-semibold text-white px-5 py-2 rounded-full brand-gradient-bg shadow-sm hover:opacity-90 transition-opacity">
+        {/* Action Button (Desktop) */}
+        <div className="hidden md:flex items-center space-x-4">
+          <button className="text-sm font-medium hover:text-blue-400 transition-colors">
+            Sign In
+          </button>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors">
+            Sign Up
+          </button>
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <div className="md:hidden flex items-center">
+          <button 
+            onClick={() => setIsOpen(!isOpen)} 
+            className="p-1 focus:outline-none"
+            aria-label="Toggle Menu"
+          >
+            <img src={hamburgerIcon} alt="menu" className="w-7 h-7 object-contain" />
+          </button>
+        </div>
+      </div>
+
+      {isOpen && (
+        <div className="md:hidden mt-3 pt-3 pb-4 border-t border-slate-800 bg-slate-900">
+          <ul className="flex flex-col space-y-3 px-2 font-medium">
+            <li onClick={() => setIsOpen(false)} className="hover:text-blue-400 cursor-pointer py-1">Home</li>
+            <li onClick={() => setIsOpen(false)} className="hover:text-blue-400 cursor-pointer py-1">Technologies</li>
+            <li onClick={() => setIsOpen(false)} className="hover:text-blue-400 cursor-pointer py-1">Projects</li>
+            <li onClick={() => setIsOpen(false)} className="hover:text-blue-400 cursor-pointer py-1">About Us</li>
+          </ul>
+          <div className="mt-4 pt-2 border-t border-slate-800 flex flex-col space-y-2">
+            <button className="w-full text-center py-2 text-sm font-medium hover:text-blue-400">
+              Sign In
+            </button>
+            <button className="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg text-sm font-semibold">
               Sign Up
             </button>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
