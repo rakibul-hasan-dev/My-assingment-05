@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Custom utility classes using standard Tailwind background and text clip properties */
+.brand-gradient-bg {
+  @apply bg-gradient-to-r from-orange-500 via-pink-600 to-purple-600;
+}
+
+.brand-gradient-text {
+  @apply bg-gradient-to-r from-orange-500 via-pink-600 to-purple-600 bg-clip-text text-transparent;
+}
